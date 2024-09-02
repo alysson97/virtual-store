@@ -1,0 +1,9 @@
+#habilita a reescrita de rotas
+RewriteEngine On
+#caso o file nao seja achado, o apache procurará outra rota definida
+RewriteCond %{REQUEST_FILENAME} !-f
+#caso o directory nao seja achado, idem
+RewriteCond %{REQUEST_FILENAME} !-d
+#cria uma regra para redirecionar qualquer rota nao definida ou encontrada para index.php com um get definido abaixo
+#QSA preserva os parametros, como GET na URL, L diz q essa e a ultima regra desse arquivo
+RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]
